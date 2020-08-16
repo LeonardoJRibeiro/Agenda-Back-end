@@ -45,12 +45,12 @@ O app será executado em modo de produção.<br />
     - [x] Cadastro de Procedimentos
     - [ ] Alteração de Procedimentos
     - [x] Listagem de Procedimentos
-    - [ ]Consulta de Procedimentos
+    - [ ] Consulta de Procedimentos
   - [ ]Agendamentos
     - [x] Cadastro de Agendamentos
     - [ ] Alteração de Agendamentos
-    - [x]Listagem de Agendamentos
-    - [ ]Consulta de Agendamentos
+    - [x] Listagem de Agendamentos
+    - [ ] Consulta de Agendamentos
   - [ ] Login
     - [x] Efetuar login
     - [ ] Redefinir senha
