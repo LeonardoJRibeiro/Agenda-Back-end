@@ -46,7 +46,7 @@ O app será executado em modo de produção.<br />
     - [ ] Alteração de Procedimentos
     - [x] Listagem de Procedimentos
     - [ ] Consulta de Procedimentos
-  - [ ]Agendamentos
+  - [ ] Agendamentos
     - [x] Cadastro de Agendamentos
     - [ ] Alteração de Agendamentos
     - [x] Listagem de Agendamentos
