@@ -12,6 +12,7 @@ const usuarioController = new UsuarioController();
 routes.post('/agendamento', auth, agendamentoController.create);
 routes.get('/agendamento', auth, agendamentoController.index);
 routes.get('/agendamento/intervalo', auth, agendamentoController.listIntervalos);
+routes.get('/agendamento/consulta', auth, agendamentoController.search);
 
 routes.post('/procedimento', auth, procedimentoController.create);
 routes.get('/procedimento', auth, procedimentoController.index);

@@ -5,7 +5,8 @@ import routes from './routes';
 import mongoose from 'mongoose';
 
 const server = express();
-server.use(cors({}))
+server.use(cors({}));
+
 mongoose.connect(
   process.env.MONGO_CONECTION as string,
   { 

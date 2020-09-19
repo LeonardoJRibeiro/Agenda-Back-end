@@ -64,7 +64,70 @@ export default class AgendamentoController {
           "procedimento.__v": 0,
           "idUsuario": 0,
         })
-        
+        .sort({
+          data: -1
+        })
+
+      return response.json(agendamentos)
+    }
+    catch (erro) {
+      console.log(erro);
+      return response.status(400).send()
+    }
+  }
+
+  async search(request: Request, response: Response) {
+    const idUsuario = request.body.idUsuario as string;
+    let cliente = request.query.cliente as string;
+    let data = request.query.data as string;
+    try {
+      cliente = cliente ? cliente : "";
+      let match;
+      if (data) {
+        let date = new Date(data);
+        date.setHours(0);
+        date.setUTCMinutes(0);
+        date.setUTCSeconds(0);
+        date.setUTCMilliseconds(0);
+        date.setUTCHours(0);
+        match = {
+          cliente: {
+            $regex: cliente,
+            $options: "i",
+          },
+          idUsuario: Types.ObjectId(idUsuario),
+          data: date
+        }
+      }
+      else {
+        match = {
+          cliente: {
+            $regex: cliente,
+            $options: "i",
+          },
+          idUsuario: Types.ObjectId(idUsuario),
+        }
+      }
+      console.log(match)
+      const agendamentos = await Agendamento
+        .aggregate()
+        .lookup({
+          from: "procedimentos",
+          localField: "idProcedimento",
+          foreignField: "_id",
+          as: "procedimento",
+        })
+        .match(match)
+        .unwind('procedimento')
+        .project({
+          "__v": 0,
+          "procedimento.__v": 0,
+          "idUsuario": 0,
+        })
+        .sort({
+          data: -1
+        })
+
       return response.json(agendamentos)
     }
     catch (erro) {
@@ -77,7 +140,7 @@ export default class AgendamentoController {
     try {
       const idUsuario = request.body.idUsuario as string;
       const data = request.query.data as unknown as Date;
-      const agendamentos = await Agendamento.find({ data, idUsuario}).select({horaInicio:1, horaFim:1, _id:0,})
+      const agendamentos = await Agendamento.find({ data, idUsuario }).select({ horaInicio: 1, horaFim: 1, _id: 0, })
       return response.json(agendamentos);
     }
     catch (erro) {
